@@ -1,0 +1,66 @@
+@import "~variables.scss";
+
+.page-inner{
+
+	.intro-area{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;	
+
+		.intro{
+			font-weight: bold;
+			font-size: 1.2 em;
+			padding-bottom: 20px;
+
+		}		
+	}
+
+	.line{
+		max-width: 400px;
+		margin: 0 auto 10px;
+
+		.title{
+			padding-bottom: 20px;
+		}
+
+		.answer-area{			
+
+			.radio-group{
+				display: block;
+				width: 100%;
+
+				.radio-button{
+					width: 20%;
+				}
+			}
+		}
+
+		.textarea{
+			width: calc(100% - 10px);
+			display: block;
+			padding: 4px;
+			border: 1px solid $basic-color;
+			min-height: 50px;
+		}		
+
+		.slider{
+			width: 100%;
+		}		
+	}
+
+	.submit-area{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;	
+
+		.btn{
+			margin: 20px auto;
+			width: 100%;
+			max-width: 400px;
+		}		
+	}
+
+
+}

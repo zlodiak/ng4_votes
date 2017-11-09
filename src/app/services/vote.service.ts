@@ -10,7 +10,7 @@ export class VoteService {
 
   constructor(private http: Http) { };
 
-  getSpeakers(): Observable<any> {
+  getVotes(): Observable<any> {
   	return this.http.get('../assets/json/feedback_0.json');
   };   
 

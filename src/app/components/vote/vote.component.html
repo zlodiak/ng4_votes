@@ -1,3 +1,39 @@
-<p>
-  vote works!
-</p>
+<div class="page-inner">
+	<div class="form" *ngIf="isVisibleForm">
+		<div class="intro-area">
+			<div class="intro">
+				Спасибо за ваши отзывы. Они для нас очень важны.
+			</div>
+		</div>
+
+		<mat-card class="line" *ngFor="let v of votes; let i = index">
+			<div class="title">{{ v.title }}</div>
+
+			<div class="cb-area" *ngIf="v.answers_type == 0">
+				<mat-checkbox *ngFor="let answer of v.answers">
+					{{ answer }}
+				</mat-checkbox>
+			</div>
+
+			<div class="answer-area">
+				<mat-radio-group class="radio-group" [(ngModel)]="answer[i]" *ngIf="v.answers_type == 1">
+				  <mat-radio-button class="radio-button" *ngFor="let answer of v.answers" [value]="answer">
+				    {{ answer }}
+				  </mat-radio-button>
+				</mat-radio-group>
+			</div>	 
+
+			<textarea class="textarea" *ngIf="v.answers_type == 3" [(ngModel)]="answer[i]"></textarea> 
+
+			<mat-slider class="slider" min="1" max="10" step="1" value="1.5" *ngIf="v.answers_type == 4"></mat-slider>
+		</mat-card>
+
+		<div class="submit-area">
+			<button class="btn btn-common" mat-button (click)="sendAnswers()">Отправить</button>
+		</div>		
+	</div>
+
+	<div class="thanks" *ngIf="!isVisibleForm">
+		<span>Вы уже проголосовали. Спасибо.</span>
+	</div>
+</div>
