@@ -8,7 +8,9 @@ import { FormsModule } from '@angular/forms';
 import {  MatCardModule,
           MatRadioModule,
           MatSliderModule,
-          MatCheckboxModule } from '@angular/material';
+          MatCheckboxModule,
+          MatSelectModule,
+          MatButtonModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { VoteService } from './services/vote.service';
@@ -23,6 +25,8 @@ import { ResultsComponent } from './components/results/results.component';
     ResultsComponent
   ],
   imports: [
+    MatButtonModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatSliderModule,

@@ -39,7 +39,7 @@
         }
     },
     "values": {
-        "92cf21b1-0ad4-4fde-88b4-aeaba8be99d7": {
+        "92cf21b1-0ad4-4fde-88b4-aeaba8be99d1": {
             "mandatory": "0",
             "title": "Выберите несколько значений",
             "answers_type": "0",
@@ -47,6 +47,14 @@
             "answers": ["Значение 1", "Значение 2", "Значение 3", "Значение 4"],
             "comment": "0"
         },
+        "92cf21b1-0ad4-4fde-88b4-aeaba8be99d2": {
+            "mandatory": "0",
+            "title": "Выберите одно значение",
+            "answers_type": "2",
+            "order": "60",
+            "answers": ["Значение 1", "Значение 2", "Значение 3", "Значение 4"],
+            "comment": "0"
+        },        
         "92cf21b1-0ad4-4fde-88b4-aeaba8be99d7": {
             "mandatory": "0",
             "title": "Планирование времени сессий",

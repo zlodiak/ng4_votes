@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { VoteService } from '../../services/vote.service';
+//import { AnswerUnit } from '../../types/answer-unit';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class VoteComponent implements OnInit {
 	private isVisibleForm: boolean = true;
   private answer: Object = {};
 	private answers: Object = {};	
+  private form: Object = {};  
 
   constructor(private voteService: VoteService) { }
 
@@ -35,14 +37,39 @@ export class VoteComponent implements OnInit {
           voteRaw[prop].answers_type = +voteRaw[prop].answers_type;
           voteRaw[prop].mandatory = +voteRaw[prop].mandatory;
           votes.push(voteRaw[prop]);
+
+          this.form[prop] = {
+            question: voteRaw[prop].title,
+            answer_cb: [],
+            answer_rb: '',
+            answer_select: '',
+            answer_textarea: '',
+            answer_slider: ''            
+          };
         }
       
         this.votes = votes;                                                                                                                           
         console.log(this.votes); 
+        console.log('form', this.form); 
       }, 
       err => {
         console.log('err')         
       });    
-  };    
+  };   
+
+  private check(form) {
+  };
+
+  private sendAnswers(form) {
+    console.log('form', form); 
+  }; 
+
+  private fillForm(line, value) {
+    /*if(line.answers_type == 1) {
+      console.log(line.answers_type, line.id);
+      this.form[line.id]['answer_rb'] = value;
+    }*/
+    
+  };
 
 }

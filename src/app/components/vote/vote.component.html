@@ -10,26 +10,40 @@
 			<div class="title">{{ v.title }}</div>
 
 			<div class="cb-area" *ngIf="v.answers_type == 0">
-				<mat-checkbox *ngFor="let answer of v.answers">
+				<mat-checkbox class="cb" *ngFor="let answer of v.answers">
 					{{ answer }}
 				</mat-checkbox>
 			</div>
 
-			<div class="answer-area">
-				<mat-radio-group class="radio-group" [(ngModel)]="answer[i]" *ngIf="v.answers_type == 1">
-				  <mat-radio-button class="radio-button" *ngFor="let answer of v.answers" [value]="answer">
-				    {{ answer }}
+			<div class="rb-area">
+				<mat-radio-group class="radio-group" *ngIf="v.answers_type == 1" [(ngModel)]="form[v.id]['answer_rb']">
+				  <mat-radio-button class="radio-button" 
+				  									*ngFor="let answer of v.answers" 
+				  									[value]="answer">{{ answer }}
 				  </mat-radio-button>
 				</mat-radio-group>
-			</div>	 
+			</div>	
 
-			<textarea class="textarea" *ngIf="v.answers_type == 3" [(ngModel)]="answer[i]"></textarea> 
+			<div class="select-area" *ngIf="v.answers_type == 2">
+				<mat-select placeholder="Выберите значение" [(ngModel)]="form[v.id]['answer_select']">
+				  <mat-option class="select" *ngFor="let answer of v.answers" [value]="answer">
+				    {{ answer }}
+				  </mat-option>
+				</mat-select>
+			</div>			 
 
-			<mat-slider class="slider" min="1" max="10" step="1" value="1.5" *ngIf="v.answers_type == 4"></mat-slider>
+			<textarea class="textarea" *ngIf="v.answers_type == 3" [(ngModel)]="form[v.id].textarea"></textarea> 
+
+			<mat-slider class="slider" 
+									min="1" 
+									max="10" 
+									step="1" 
+									[(ngModel)]="form[v.id].answer_slider"
+									*ngIf="v.answers_type == 4"></mat-slider>
 		</mat-card>
 
 		<div class="submit-area">
-			<button class="btn btn-common" mat-button (click)="sendAnswers()">Отправить</button>
+			<button class="btn btn-common" mat-button (click)="sendAnswers(form)">Отправить</button>
 		</div>		
 	</div>
 
