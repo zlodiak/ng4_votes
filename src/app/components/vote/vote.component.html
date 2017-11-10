@@ -10,13 +10,15 @@
 			<div class="title">{{ v.title }}</div>
 
 			<div class="cb-area" *ngIf="v.answers_type == 0">
-				<mat-checkbox class="cb" *ngFor="let answer of v.answers">
-					{{ answer }}
+				<mat-checkbox class="cb"										
+											*ngFor="let answer of v.answers"
+											[checked]="form[v.id].answer_cb.indexOf(answer) > -1"
+											(change)="toggleCB(v.id, answer)">{{ answer }}
 				</mat-checkbox>
 			</div>
 
-			<div class="rb-area">
-				<mat-radio-group class="radio-group" *ngIf="v.answers_type == 1" [(ngModel)]="form[v.id]['answer_rb']">
+			<div class="rb-area" *ngIf="v.answers_type == 1">
+				<mat-radio-group class="radio-group" [(ngModel)]="form[v.id]['answer_rb']">
 				  <mat-radio-button class="radio-button" 
 				  									*ngFor="let answer of v.answers" 
 				  									[value]="answer">{{ answer }}
@@ -32,7 +34,7 @@
 				</mat-select>
 			</div>			 
 
-			<textarea class="textarea" *ngIf="v.answers_type == 3" [(ngModel)]="form[v.id].textarea"></textarea> 
+			<textarea class="textarea" *ngIf="v.answers_type == 3" [(ngModel)]="form[v.id].answer_textarea"></textarea> 
 
 			<mat-slider class="slider" 
 									min="1" 

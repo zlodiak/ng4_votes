@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { VoteService } from '../../services/vote.service';
-//import { AnswerUnit } from '../../types/answer-unit';
 
 
 @Component({
@@ -39,18 +38,19 @@ export class VoteComponent implements OnInit {
           votes.push(voteRaw[prop]);
 
           this.form[prop] = {
-            question: voteRaw[prop].title,
+            question_id: prop,
+            question_title: voteRaw[prop].title,
+            question_type: voteRaw[prop].answers_type,
             answer_cb: [],
             answer_rb: '',
             answer_select: '',
             answer_textarea: '',
-            answer_slider: ''            
+            answer_slider: ''                        
           };
         }
       
         this.votes = votes;                                                                                                                           
         console.log(this.votes); 
-        console.log('form', this.form); 
       }, 
       err => {
         console.log('err')         
@@ -61,15 +61,50 @@ export class VoteComponent implements OnInit {
   };
 
   private sendAnswers(form) {
-    console.log('form', form); 
+    //console.log('form', form); 
+
+    let sendArr: any[] = [];
+    let line: Object = {};
+    let lineObj: Object = {};
+    let lineId = Date.now() + '_' +performance.now();
+
+    for(var prop in form) {
+      if (!form.hasOwnProperty(prop)) continue;
+
+      lineObj = {
+        id: form[prop].question_id,
+        title: form[prop].question_title,
+      };      
+
+      if(form[prop].question_type == 0) {
+        lineObj['answer'] = form[prop].answer_cb
+      } else if(form[prop].question_type == 1) {
+        lineObj['answer'] = form[prop].answer_rb
+      } else if(form[prop].question_type == 2) {
+        lineObj['answer'] = form[prop].answer_select
+      } else if(form[prop].question_type == 3) {
+        lineObj['answer'] = form[prop].answer_textarea
+      } else if(form[prop].question_type == 4) {
+        lineObj['answer'] = form[prop].answer_slider
+      };   
+
+      sendArr.push(lineObj);  
+      line[lineId] = sendArr;
+    }
+
+    let storage = localStorage.storage ? JSON.parse(localStorage.storage) : {};
+    storage[lineId] = line[lineId];
+    localStorage.storage = JSON.stringify(storage);
   }; 
 
-  private fillForm(line, value) {
-    /*if(line.answers_type == 1) {
-      console.log(line.answers_type, line.id);
-      this.form[line.id]['answer_rb'] = value;
-    }*/
+  private toggleCB(v_id, answer) {
+    let pos = this.form[v_id].answer_cb.indexOf(answer.trim());
     
+    if(pos == -1) {
+      this.form[v_id].answer_cb.push(answer.trim());
+    } else {
+      this.form[v_id].answer_cb.splice(pos, 1);      
+    }
   };
 
 }
