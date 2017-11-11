@@ -90,7 +90,7 @@ export class VoteComponent implements OnInit {
       line[lineId] = sendArr;
     }
 
-    this.resultsService.addResult(lineId, line)    
+    this.resultsService.addResult(lineId, line[lineId])    
   }; 
 
   private toggleCB(v_id, answer) {

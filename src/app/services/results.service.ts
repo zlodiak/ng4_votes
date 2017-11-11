@@ -9,9 +9,9 @@ export class ResultsService {
   	return localStorage.results ? JSON.parse(localStorage.results) : {};
   };
 
-  private addResult(lineId, line) {
+  private addResult(lineId, result) {
   	var results = this.getResults();
-  	results[lineId] = line[lineId];
+  	results[lineId] = result;
 		localStorage.results = JSON.stringify(results);
   };  
 
