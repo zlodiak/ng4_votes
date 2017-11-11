@@ -3,8 +3,16 @@
 	border: 1px solid #ccc;
 	padding: 0;
 
+	th{
+		font-size: 0.7em;
+		text-align: left;
+		vertical-align: bottom;
+	}
+
 	td{
+		font-size: 0.7em;
 		border: 1px solid #ccc;
-		
+		padding: 10px;
+		vertical-align: top;
 	}
 }
