@@ -1,4 +1,4 @@
-<table class="result-table" cellpadding="0" celspacing="0">
+<table class="result-table" cellpadding="0" celspacing="0" *ngIf="results.length">
 	<thead>
 		<tr>
 			<th *ngFor="let head of results[0]; let answer_i = index;">
@@ -17,3 +17,7 @@
 		</tr>	
 	</tbody>
 </table>
+
+<div class="no-results" *ngIf="!results.length">
+	Никто пока не проголосовал
+</div>
