@@ -12,12 +12,13 @@ import { ResultsService } from '../../services/results.service';
 export class VoteComponent implements OnInit {
 
 	private votes: any[] = [];
-	private isVisibleForm: boolean = true;
   private answer: Object = {};
 	private answers: Object = {};	
   private form: Object = {};  
+  private isVoted: boolean = localStorage.isVoted ? true : false;
+  private noValidIdsArr: string[] = [];
 
-  constructor(private voteService: VoteService, private resultsService: ResultsService) { }
+  constructor(private voteService: VoteService, private resultsService: ResultsService) {}
 
   ngOnInit() {
   	this.getVotes();
@@ -28,7 +29,7 @@ export class VoteComponent implements OnInit {
       data => {   
         //console.log(data);  
         let voteRaw = JSON.parse(data._body);
-        let votes: any[] = [];
+        let votes: any[] = [];        
 
         for(var prop in voteRaw) {
           if (!voteRaw.hasOwnProperty(prop)) continue;
@@ -41,6 +42,7 @@ export class VoteComponent implements OnInit {
           this.form[prop] = {
             question_id: prop,
             question_title: voteRaw[prop].title,
+            question_mandatory: voteRaw[prop].mandatory,
             question_type: voteRaw[prop].answers_type,
             answer_cb: [],
             answer_rb: '',
@@ -72,6 +74,7 @@ export class VoteComponent implements OnInit {
       lineObj = {
         id: form[prop].question_id,
         title: form[prop].question_title,
+        mandatory: form[prop].question_mandatory
       };      
 
       if(form[prop].question_type == 0) {
@@ -90,8 +93,35 @@ export class VoteComponent implements OnInit {
       line[lineId] = sendArr;
     }
 
-    this.resultsService.addResult(lineId, line[lineId])    
+    console.log(lineId, line);
+
+    this.checkValidForm(lineId, line);
+
+    if(this.noValidIdsArr.length) {
+      // validation false
+    } else {
+      // validation ok
+      this.resultsService.addResult(lineId, line[lineId]);
+      this.isVoted = 'true';
+      localStorage.isVoted = 'true';      
+    }
+
+    
   }; 
+
+  private checkValidForm(lineId, line) {
+    this.noValidIdsArr = [];
+    line[lineId].forEach((question) => {
+      if( (typeof question.answer == 'object' && !question.answer.length) ||
+          (typeof question.answer == 'string' && !question.answer.length) ||
+          (typeof question.answer == 'number' && !question.answer)
+      ) {
+        if(question.mandatory != 0) { this.noValidIdsArr.push(question.id); }        
+      }
+    });
+
+    console.log(this.noValidIdsArr);
+  };
 
   private toggleCB(v_id, answer) {
     let pos = this.form[v_id].answer_cb.indexOf(answer.trim());

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { VoteComponent } from './components/vote/vote.component';
 import { ResultsComponent } from './components/results/results.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,11 @@ const routes: Routes = [
     path: 'results',
     children: [],
     component: ResultsComponent
-  }
+  },
+  {
+    path: '**', 
+    component: PageNotFoundComponent
+  }  
 ];
 
 @NgModule({

@@ -20,6 +20,7 @@ import { ResultsService } from './services/results.service';
 import { VoteComponent } from './components/vote/vote.component';
 import { ResultsComponent } from './components/results/results.component';
 import { FormattedAnswerPipe } from './pipes/formatted-answer.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FormattedAnswerPipe } from './pipes/formatted-answer.pipe';
     AppComponent,
     VoteComponent,
     ResultsComponent,
-    FormattedAnswerPipe
+    FormattedAnswerPipe,
+    PageNotFoundComponent
   ],
   imports: [
     OrderModule,

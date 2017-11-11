@@ -1,6 +1,6 @@
 {
     "92cf21b1-0ad4-4fde-88b4-aeaba8be99d1": {
-        "mandatory": "0",
+        "mandatory": "1",
         "title": "Выберите несколько значений",
         "answers_type": "0",
         "order": "10",
@@ -8,7 +8,7 @@
         "comment": "0"
     },
     "92cf21b1-0ad4-4fde-88b4-aeaba8be99d4": {
-        "mandatory": "0",
+        "mandatory": "1",
         "title": "Выберите несколько значений2",
         "answers_type": "0",
         "order": "56",
@@ -24,7 +24,7 @@
         "comment": "0"
     },                
     "92cf21b1-0ad4-4fde-88b4-aeaba8be99d7": {
-        "mandatory": "0",
+        "mandatory": "1",
         "title": "Планирование времени сессий",
         "answers_type": "4",
         "order": "20",
@@ -40,7 +40,7 @@
         "comment": "0"
     },                
     "2ad27646-d8a8-4f44-9228-87256d56d5af": {
-        "mandatory": "0",
+        "mandatory": "1",
         "title": "Приложение установить было легко",
         "answers_type": "1",          
         "order": "30",              
@@ -48,7 +48,7 @@
         "comment": "0"
     },                
     "3038f383-3419-40ac-91f8-29eb9384d65b": {
-        "mandatory": "0",
+        "mandatory": "1",
         "title": "На что бы вы порекомендовали обратить внимание в первую очередь, при организации Саммита в будущем? ",
         "answers_type": "3",                
         "order": "150",

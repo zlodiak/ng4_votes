@@ -1,13 +1,16 @@
 <div class="page-inner">
-	<div class="form" *ngIf="isVisibleForm">
+	<div class="form" *ngIf="!isVoted">
 		<div class="intro-area">
 			<div class="intro">
 				Спасибо за ваши отзывы. Они для нас очень важны.
 			</div>
 		</div>
 
-		<mat-card class="line" *ngFor="let v of votes | orderBy: 'order': false; let i = index">
-			<div class="title">{{ v.title }}</div>
+		<mat-card class="line" 
+							*ngFor="let v of votes | orderBy: 'order': false; let i = index" 
+							id="card_{{ v.id }}" 
+							[ngClass]="{colored: noValidIdsArr.indexOf(v.id) != -1}">
+			<div class="title">{{ v.title }} <span class="mandatory" *ngIf="v.mandatory != 0">*</span></div>
 
 			<div class="cb-area" *ngIf="v.answers_type == 0">
 				<mat-checkbox class="cb"										
@@ -49,7 +52,7 @@
 		</div>		
 	</div>
 
-	<div class="thanks" *ngIf="!isVisibleForm">
+	<div class="thanks" *ngIf="isVoted">
 		<span>Вы уже проголосовали. Спасибо.</span>
 	</div>
 </div>
