@@ -12,6 +12,8 @@ import {  MatCardModule,
           MatSelectModule,
           MatButtonModule } from '@angular/material';
 
+import { OrderModule } from 'ngx-order-pipe';          
+
 import { AppComponent } from './app.component';
 import { VoteService } from './services/vote.service';
 import { ResultsService } from './services/results.service';
@@ -28,6 +30,7 @@ import { FormattedAnswerPipe } from './pipes/formatted-answer.pipe';
     FormattedAnswerPipe
   ],
   imports: [
+    OrderModule,
     MatButtonModule,
     MatSelectModule,
     BrowserAnimationsModule,

@@ -27,7 +27,7 @@ export class VoteComponent implements OnInit {
     this.voteService.getVotes().subscribe(
       data => {   
         //console.log(data);  
-        let voteRaw = JSON.parse(data._body)['values'];
+        let voteRaw = JSON.parse(data._body);
         let votes: any[] = [];
 
         for(var prop in voteRaw) {

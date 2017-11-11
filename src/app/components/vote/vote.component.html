@@ -6,7 +6,7 @@
 			</div>
 		</div>
 
-		<mat-card class="line" *ngFor="let v of votes; let i = index">
+		<mat-card class="line" *ngFor="let v of votes | orderBy: 'order': false; let i = index">
 			<div class="title">{{ v.title }}</div>
 
 			<div class="cb-area" *ngIf="v.answers_type == 0">
