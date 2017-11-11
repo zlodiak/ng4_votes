@@ -14,15 +14,18 @@ import {  MatCardModule,
 
 import { AppComponent } from './app.component';
 import { VoteService } from './services/vote.service';
+import { ResultsService } from './services/results.service';
 import { VoteComponent } from './components/vote/vote.component';
 import { ResultsComponent } from './components/results/results.component';
+import { FormattedAnswerPipe } from './pipes/formatted-answer.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     VoteComponent,
-    ResultsComponent
+    ResultsComponent,
+    FormattedAnswerPipe
   ],
   imports: [
     MatButtonModule,
@@ -38,6 +41,7 @@ import { ResultsComponent } from './components/results/results.component';
     AppRoutingModule
   ],
   providers: [
+    ResultsService,
   	VoteService
   ],
   bootstrap: [AppComponent]

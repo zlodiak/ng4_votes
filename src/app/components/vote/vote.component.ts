@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { VoteService } from '../../services/vote.service';
+import { ResultsService } from '../../services/results.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class VoteComponent implements OnInit {
 	private answers: Object = {};	
   private form: Object = {};  
 
-  constructor(private voteService: VoteService) { }
+  constructor(private voteService: VoteService, private resultsService: ResultsService) { }
 
   ngOnInit() {
   	this.getVotes();
@@ -57,9 +58,6 @@ export class VoteComponent implements OnInit {
       });    
   };   
 
-  private check(form) {
-  };
-
   private sendAnswers(form) {
     //console.log('form', form); 
 
@@ -85,16 +83,14 @@ export class VoteComponent implements OnInit {
       } else if(form[prop].question_type == 3) {
         lineObj['answer'] = form[prop].answer_textarea
       } else if(form[prop].question_type == 4) {
-        lineObj['answer'] = form[prop].answer_slider
+        lineObj['answer'] = '' + form[prop].answer_slider
       };   
 
       sendArr.push(lineObj);  
       line[lineId] = sendArr;
     }
 
-    let storage = localStorage.storage ? JSON.parse(localStorage.storage) : {};
-    storage[lineId] = line[lineId];
-    localStorage.storage = JSON.stringify(storage);
+    this.resultsService.addResult(lineId, line)    
   }; 
 
   private toggleCB(v_id, answer) {

@@ -1,3 +1,19 @@
-<p>
-  results works!
-</p>
+<table class="result-table" cellpadding="0" celspacing="0">
+	<thead>
+		<tr>
+			<th *ngFor="let head of results[0]; let answer_i = index;">
+				{{ head.title }}
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr class="result" *ngFor="let user of results; let user_i = index;">
+			<td class="result" *ngFor="let answer of user; let answer_i = index;">
+				<div *ngIf="answer.answer">
+					<span>{{ answer.answer | formattedAnswer }}</span>				
+				</div>							
+			</td>
+		</tr>	
+	</tbody>
+</table>
