@@ -5,11 +5,11 @@ export class ResultsService {
 
   constructor() { }
 
-  private getResults() {
+  getResults() {
   	return localStorage.results ? JSON.parse(localStorage.results) : {};
   };
 
-  private addResult(lineId, result) {
+  addResult(lineId, result) {
   	var results = this.getResults();
   	results[lineId] = result;
 		localStorage.results = JSON.stringify(results);

@@ -53,7 +53,7 @@ export class VoteComponent implements OnInit {
         }
       
         this.votes = votes;                                                                                                                           
-        console.log(this.votes); 
+        //console.log(this.votes); 
       }, 
       err => {
         console.log('err')         
@@ -61,8 +61,6 @@ export class VoteComponent implements OnInit {
   };   
 
   private sendAnswers(form) {
-    //console.log('form', form); 
-
     let sendArr: any[] = [];
     let line: Object = {};
     let lineObj: Object = {};
@@ -93,8 +91,6 @@ export class VoteComponent implements OnInit {
       line[lineId] = sendArr;
     }
 
-    console.log(lineId, line);
-
     this.checkValidForm(lineId, line);
 
     if(this.noValidIdsArr.length) {
@@ -105,8 +101,6 @@ export class VoteComponent implements OnInit {
       this.isVoted = 'true';
       localStorage.isVoted = 'true';      
     }
-
-    
   }; 
 
   private checkValidForm(lineId, line) {
@@ -119,8 +113,6 @@ export class VoteComponent implements OnInit {
         if(question.mandatory != 0) { this.noValidIdsArr.push(question.id); }        
       }
     });
-
-    console.log(this.noValidIdsArr);
   };
 
   private toggleCB(v_id, answer) {
