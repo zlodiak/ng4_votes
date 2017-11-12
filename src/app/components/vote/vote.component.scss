@@ -22,9 +22,9 @@
 
 		&.colored{
 		  box-shadow: 
-		  0 3px 1px -2px red, 
-		  0 2px 2px 0 red, 
-		  0 1px 5px 0 red;
+		  0 3px 1px -2px $red-color, 
+		  0 2px 2px 0 $red-color, 
+		  0 1px 5px 0 $red-color;
 		}
 
 		.title{
@@ -55,6 +55,8 @@
 			padding: 4px;
 			border: 1px solid $basic-color;
 			min-height: 50px;
+			border-radius: 5px;
+			outline: none;
 		}		
 
 		.slider{
@@ -74,9 +76,9 @@
 		align-items: center;	
 
 		.btn{
-			margin: 20px auto;
-			width: 100%;
-			max-width: 400px;
+			margin: 20px 0;
+			//width: 100%;
+			//max-width: 60px;
 		}		
 	}
 

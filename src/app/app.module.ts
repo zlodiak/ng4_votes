@@ -11,7 +11,8 @@ import {  MatCardModule,
           MatCheckboxModule,
           MatSelectModule,
           MatButtonModule,
-          MatDialogModule } from '@angular/material';
+          MatDialogModule,
+          MatSidenavModule } from '@angular/material';
 
 import { OrderModule } from 'ngx-order-pipe';          
 
@@ -35,6 +36,7 @@ import { InfoDialogComponent } from './dialogs/info-dialog/info-dialog.component
     InfoDialogComponent
   ],
   imports: [
+    MatSidenavModule,
     MatDialogModule,
     OrderModule,
     MatButtonModule,

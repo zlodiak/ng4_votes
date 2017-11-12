@@ -1,11 +1,39 @@
-<nav>
-  <a class="link" [routerLink]="['/vote']" routerLinkActive="active">
-    <span class="title">Голосование</span>
-  </a> 
+<mat-sidenav-container class="side-nav-container">
+  <mat-sidenav #sidenav class="left-sidenav" mode="side">
+  	<div class="header">
+	    <button class="btn btn-common" type="button" mat-button (click)="sidenav.close()">
+				<i class="icon material-icons">close</i>
+	      <div class="label">Закрыть меню</div>
+	    </button>
+  	</div>
 
-  <a class="link" [routerLink]="['/results']" routerLinkActive="active">
-    <span class="title">Результаты</span>
-  </a>      
-</nav>
+		<nav class="nav">
+		  <a class="link" [routerLink]="['/vote']" routerLinkActive="active">
+		    <span class="title">Голосование</span>
+		  </a> 
 
-<router-outlet></router-outlet>
+		  <a class="link" [routerLink]="['/results']" routerLinkActive="active">
+		    <span class="title">Результаты</span>
+		  </a>      
+		</nav>
+  </mat-sidenav>
+
+  <div class="sidenav-content">
+  	<div class="header">
+	    <button class="btn btn-common" type="button" mat-button (click)="sidenav.open()" *ngIf="!stateSidenav.opened">
+				<i class="icon material-icons">menu</i>
+	      <div class="label">Открыть меню</div>
+	    </button>
+    </div>
+
+	  <div class="sidenav-content">
+	    <router-outlet></router-outlet>
+	  </div>
+  </div>
+</mat-sidenav-container>
+
+
+
+
+
+
