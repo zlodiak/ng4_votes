@@ -10,7 +10,8 @@ import {  MatCardModule,
           MatSliderModule,
           MatCheckboxModule,
           MatSelectModule,
-          MatButtonModule } from '@angular/material';
+          MatButtonModule,
+          MatDialogModule } from '@angular/material';
 
 import { OrderModule } from 'ngx-order-pipe';          
 
@@ -21,6 +22,7 @@ import { VoteComponent } from './components/vote/vote.component';
 import { ResultsComponent } from './components/results/results.component';
 import { FormattedAnswerPipe } from './pipes/formatted-answer.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { InfoDialogComponent } from './dialogs/info-dialog/info-dialog.component';
 
 
 @NgModule({
@@ -29,9 +31,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     VoteComponent,
     ResultsComponent,
     FormattedAnswerPipe,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    InfoDialogComponent
   ],
   imports: [
+    MatDialogModule,
     OrderModule,
     MatButtonModule,
     MatSelectModule,
@@ -49,6 +53,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ResultsService,
   	VoteService
   ],
+  entryComponents: [
+    InfoDialogComponent
+  ],   
   bootstrap: [AppComponent]
 })
 export class AppModule { }

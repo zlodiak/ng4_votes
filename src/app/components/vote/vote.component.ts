@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material';
+
+import { InfoDialogComponent } from '../../dialogs/info-dialog/info-dialog.component';
 import { VoteService } from '../../services/vote.service';
 import { ResultsService } from '../../services/results.service';
 
@@ -18,7 +21,9 @@ export class VoteComponent implements OnInit {
   private isVoted: boolean = localStorage.isVoted ? true : false;
   private noValidIdsArr: string[] = [];
 
-  constructor(private voteService: VoteService, private resultsService: ResultsService) {}
+  constructor(private voteService: VoteService, 
+              private resultsService: ResultsService, 
+              private matDialog: MatDialog) {}
 
   ngOnInit() {
   	this.getVotes();
@@ -95,11 +100,24 @@ export class VoteComponent implements OnInit {
 
     if(this.noValidIdsArr.length) {
       // validation false
+      this.matDialog.open(InfoDialogComponent, {
+        width: '300px',
+        hasBackdrop: true,
+        data: { title: 'Ошибка!', message: 'Не все обязательные поля заполнены.' }
+      });      
     } else {
       // validation ok
       this.resultsService.addResult(lineId, line[lineId]);
-      this.isVoted = 'true';
-      localStorage.isVoted = 'true';      
+      this.isVoted = true;
+      localStorage.isVoted = 'true';             
+
+      setTimeout(() => {
+        this.matDialog.open(InfoDialogComponent, {
+          width: '300px',
+          hasBackdrop: true,
+          data: { title: 'Спасибо!', message: 'Ваши данные отправлены.' }
+        });        
+      }, 0);
     }
   }; 
 
