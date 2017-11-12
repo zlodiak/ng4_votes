@@ -1,3 +1,7 @@
+live page: https://zlodiak.github.io/ng2/votes/0/
+
+app for anonymous votes. in non production version a results storaged in localStorage
+
 # Votes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
